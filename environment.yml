@@ -1,0 +1,5 @@
+name: tag-dbx-env
+channels:
+  - defaults
+dependencies:
+  - python=3.9
