@@ -30,6 +30,7 @@ MacTag2Dropbox is a Python script that reads **Finder** tags from photos on macO
     ```
 3. Install python dependencies with poetry:
     ```bash
+    poetry config virtualenvs.create false
     poetry install
     ```
 
@@ -53,7 +54,7 @@ MacTag2Dropbox is a Python script that reads **Finder** tags from photos on macO
 
 1. Run the script:
     ```bash
-    python MacTag2Dropbox.py
+    python process_tags.py
     ```
 
 2. The script will:
