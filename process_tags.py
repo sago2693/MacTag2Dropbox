@@ -68,13 +68,20 @@ def main():
         return
 
     # Select Dropbox folder path
+    root = Tk()
+    root.withdraw()  # Hide the main tkinter window
     dropbox_path = simpledialog.askstring("Dropbox Path", "Enter the Dropbox folder path")
+    root.destroy()
+    
     if not dropbox_path:
         print("No Dropbox path entered. Exiting.")
         return
 
     # Enter Dropbox API key
+    root = Tk()
+    root.withdraw()  # Hide the main tkinter window
     dropbox_key = simpledialog.askstring("Dropbox API Key", "Enter your Dropbox API key")
+    root.destroy()
     if not dropbox_key:
         print("No Dropbox API key entered. Exiting.")
         return
