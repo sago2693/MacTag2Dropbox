@@ -6,13 +6,12 @@ authors = [
     {name = "sago2693",email = "56797497+sago2693@users.noreply.github.com"}
 ]
 readme = "README.md"
-requires-python = "3.7.16"
-dependencies = [
-    "dropbox (>=12.0.2,<13.0.0)",
-    "macos-tags (>=1.5.1,<2.0.0)",
-    "pandas (>=1.1.5,<1.2.0)"
-]
-
+requires-python = "^3.8"
+[tool.poetry.dependencies]
+python = "^3.8"  # or whatever version you're using
+dropbox = "^12.0.2"
+macos-tags = "^1.5.1"
+pandas = "^2.0.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
