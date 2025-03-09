@@ -1,0 +1,3 @@
+([('process_tags',
+   '/Users/sergio_gonzalez3/Documents/github/MacTag2Dropbox/dist/process_tags',
+   'EXECUTABLE')],)

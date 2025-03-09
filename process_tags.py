@@ -5,10 +5,64 @@ from io import BytesIO
 import macos_tags
 import os
 import pandas as pd
-from tkinter import Tk, filedialog, Toplevel, Button, Scrollbar, ttk
+from PIL import Image, ImageTk
+from tkinter import Tk, filedialog, Toplevel, Button, Scrollbar, ttk, Label
 import tkinter.simpledialog as simpledialog
 import re
 import unicodedata
+
+import os
+import sys
+
+def get_resource_path(relative_path):
+    """ Get absolute path to resource, works for development and PyInstaller """
+    if hasattr(sys, '_MEIPASS'):  # PyInstaller temp directory
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+# Update image paths:
+image1_path = get_resource_path("images/step1.jpg")
+image2_path = get_resource_path("images/step2.jpg")
+image3_path = get_resource_path("images/step3.jpg")
+
+
+
+def show_image_window(image_path, message):
+    """Display a window with a message and an image, resizing the image to a fixed width while maintaining its aspect ratio."""
+    window = Toplevel()
+    window.title("Step 1")
+
+    # Load image using PIL
+    img = Image.open(image_path)
+
+    # Calculate the new image dimensions to maintain aspect ratio
+    fixed_width = 800
+    aspect_ratio = img.height / img.width
+    new_height = int(fixed_width * aspect_ratio)  # Compute height based on aspect ratio
+    img = img.resize((fixed_width, new_height))  # Resize image
+
+    img_tk = ImageTk.PhotoImage(img)
+
+    # Adjust the window's size to fit the image size with padding for message and button
+    window.geometry(f"{fixed_width + 20}x{new_height + 120}")  # Add extra pixels for message/button
+
+    # Display the message above the image
+    message_label = Label(window, text=message, font=("Arial", 14), wraplength=fixed_width, justify="center")
+    message_label.pack(pady=10)
+
+    # Display the image
+    label = Label(window, image=img_tk)
+    label.image = img_tk  # Keep a reference to avoid garbage collection
+    label.pack()
+
+    # Add a button to close the window and proceed
+    Button(window, text="Continue", command=window.destroy).pack(pady=10)
+
+    # Wait for the window to be closed
+    window.wait_window()
+   
+
+
 
 def select_folder(title):
     root = Tk()
@@ -189,6 +243,11 @@ def main():
     if not local_folder:
         print("No folder selected. Exiting.")
         return
+    
+    # Instructions 
+    show_image_window(image1_path, "Go to the link: https://www.dropbox.com/developers/apps and click the existing app")
+    show_image_window(image2_path, "Scroll down and Click on the 'Generate' button under Generate access token to generate an access token")
+    show_image_window(image3_path, "Copy the generated access token and paste it in the dialog box that will appear next")
 
     # Enter Dropbox API key
     root = Tk()

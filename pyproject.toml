@@ -12,6 +12,7 @@ python = "^3.8"  # or whatever version you're using
 dropbox = "^12.0.2"
 macos-tags = "^1.5.1"
 pandas = "^2.0.0"
+pillow = "10.1.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
